@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @team %>
+<h1><%= @team.name %></h1>
+
+<h2>Draft Picks</h2>
+<ul class="left-aligned-list">
+  <% @team.picks.order(:round, :number).each do |pick| %>
+    <li>
+      Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
+    </li>
+  <% end %>
+</ul>
 
 <div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
   <%= link_to "Back to teams", teams_path %>
-
-  <%= button_to "Destroy this team", @team, method: :delete %>
 </div>

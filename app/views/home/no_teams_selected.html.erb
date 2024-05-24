@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<h1>NFL Draft Trade Calculator</h1>
+
+<%= form_tag(home_index_path, method: "get") do %>
+  <%= select_tag "starting_team_id", options_from_collection_for_select(@teams, "id", "name"), prompt: "Add Starting Team" %>
+  <%= submit_tag "Select Team" %>
+<% end %>
+</body>
+</html>

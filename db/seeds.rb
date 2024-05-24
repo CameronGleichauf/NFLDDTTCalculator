@@ -11,7 +11,10 @@
 
 # db/seeds.rb
 
-# Clear existing teams
+require_relative 'jj_trade_value_chart'
+
+# Clear existing data
+Pick.destroy_all
 Team.destroy_all
 
 # NFL teams list with unique IDs
@@ -57,4 +60,25 @@ nfl_teams = [
 nfl_teams.each do |team_name|
   Team.create(name: team_name)
 end
+
+teams = Team.all
+
+# Assign 1 picks to all 32 teams for 7 rounds
+teams.each do |team|
+  (1..7).each do |round|
+    1.times do |n|
+      offset = team.id % 32
+      pick_number = (round - 1) * 32 + (offset + 1)
+      Pick.create!(
+        team: team,
+        round: round,
+        number: pick_number,
+        value: JimmyJohnsonTradeValueChart::PICK_VALUES[pick_number] # Ensure pick values are within range
+      )
+    end
+  end
+end
+
+puts "Teams and picks have been successfully assigned."
+puts "Picks have been successfully assigned to all teams."
 

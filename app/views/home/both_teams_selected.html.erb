@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NFL Draft Trade Calculator</title>
+  <style>
+      body {
+          text-align: center;
+      }
+      h1, p {
+          font-size: 24px;
+      }
+      .team-card {
+          border: 1px solid #ccc;
+          padding: 10px;
+          margin: 10px;
+          min-width: 320px;
+          display: inline-block;
+          text-align: left;
+      }
+      .team-name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: bold;
+      }
+      .draft-picks {
+          font-size: 22px;
+      }
+      .left-aligned-list {
+          text-align: left;
+          margin-left: 20px;
+          list-style-type: disc;
+          padding-left: 20px;
+          font-size: 18px;
+      }
+      .pick-button {
+          display: inline-block;
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+      }
+  </style>
+</head>
+<body>
+<p style="color: green"><%= notice %></p>
+
+<h1>NFL Draft Trade Calculator</h1>
+
+<div class="teams-container">
+  <%= render partial: 'shared/team_picks', locals: { team: @starting_team, prefix: "Starting " } %>
+  <%= render partial: 'shared/team_picks', locals: { team: @target_team, prefix: "Target " } %>
+</div>
+
+</body>
+</html>

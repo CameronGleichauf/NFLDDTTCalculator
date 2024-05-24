@@ -12,3 +12,26 @@
     padding: 10px;
     margin-bottom: 20px;
 }
+
+/* custom.css */
+body {
+    text-align: center;
+}
+
+h1, p {
+    font-size: 24px;
+}
+
+.teams-container {
+    display: flex;
+    justify-content: center;
+}
+
+.team {
+    margin: 0 10px;
+}
+
+.left-aligned-list {
+    list-style-type: none;
+    padding: 0;
+}

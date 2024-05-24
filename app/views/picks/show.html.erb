@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pick Details</title>
+</head>
+<body>
+<h1>Pick Details</h1>
+
+<div>
+  <p>Team: <%= @pick.team.name %></p>
+  <p>Round: <%= @pick.round %></p>
+  <p>Pick within Round: <%= @pick.number %></p>
+  <p>Pick Value: <%= @pick.value %></p>
+</div>
+
+<%= link_to "Back to Picks", picks_path %>
+</body>
+</html>

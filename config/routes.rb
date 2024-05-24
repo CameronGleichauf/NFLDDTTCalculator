@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :teams
+  get 'trades/index'
+  get 'trades/new'
+  get 'trades/create'
+  get 'trades/show'
+  get 'picks/index'
+  get 'picks/show'
+
+  resources :teams, only: [:index, :show] do
+    resources :picks, only: [:index]
+  end
+  resources :trades, only: [:index, :new, :create, :show]
+
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,7 +19,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "teams#index"
+  root "home#index"
 
   get "/teams", to: "teams#index"
   get "/teams/:id", to: "teams#show"

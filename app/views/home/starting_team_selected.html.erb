@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NFL Draft Trade Calculator</title>
+</head>
+<body>
+<h1>NFL Draft Trade Calculator</h1>
+
+<p>The starting team selected is: <%= @starting_team.name %></p>
+
+<%= form_tag(home_index_path, method: "get") do %>
+  <%= hidden_field_tag "starting_team_id", params[:starting_team_id] %>
+  <%= select_tag "target_team_id", options_from_collection_for_select(@other_teams, "id", "name"), prompt: "Add Target Team" %>
+  <%= submit_tag "Select Team" %>
+<% end %>
+</body>
+</html>
