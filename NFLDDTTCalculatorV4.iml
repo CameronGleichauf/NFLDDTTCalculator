@@ -263,6 +263,13 @@
     <entry key="public/stylesheets">
       <value>file://$MODULE_DIR$/public/stylesheets</value>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry key="test/mailers/previews">
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
+      <value>file://$MODULE_DIR$/test/mailers/previews</value>
+    </entry>
+>>>>>>> c4ec83b (Making UI flexible and removing IDs from display)
     <entry key="tmp">
       <value>file://$MODULE_DIR$/tmp</value>
     </entry>

@@ -2,12 +2,14 @@
 
 <h1>Teams</h1>
 
-<div id="teams">
+<div id="teams" class="flex-container">
   <% @teams.each do |team| %>
-    <%= render team %>
-    <p>
-      <%= link_to "Show this team", team %>
-    </p>
+    <div class="team-card">
+      <%= render team %>
+      <p>
+        <%= link_to "Show this team", team %>
+      </p>
+    </div>
   <% end %>
 </div>
 

@@ -1,0 +1,14 @@
+/* Flex container for teams */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+}
+
+/* Style for each team card */
+.team-card {
+    width: 45%; /* Adjust as needed */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
