@@ -1,11 +1,9 @@
-/* Flex container for teams */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; /* Adjust as needed */
 }
 
-/* Style for each team card */
 .team-card {
     width: 45%; /* Adjust as needed */
     border: 1px solid #ccc;
@@ -13,7 +11,13 @@
     margin-bottom: 20px;
 }
 
-/* custom.css */
+.team-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
 body {
     text-align: center;
 }
@@ -24,14 +28,39 @@ h1, p {
 
 .teams-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .team {
-    margin: 0 10px;
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
 }
 
 .left-aligned-list {
-    list-style-type: none;
-    padding: 0;
+    margin-top: 5px;
+    text-align: left;
+    margin-left: 20px;
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+
+.highlight {
+    border: 2px solid black; /* Black border around the highlighted item */
+    padding: 5px; /* Add some padding to ensure the border is visible */
+}
+
+#save-trade-button {
+    color: black;
+    border: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#save-trade-button:hover {
+    background-color: yellowgreen;
 }

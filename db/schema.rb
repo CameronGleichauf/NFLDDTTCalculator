@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_24_173027) do
   add_foreign_key "picks", "teams"
   add_foreign_key "trade_picks", "picks"
   add_foreign_key "trade_picks", "trades"
-  add_foreign_key "trades", "starting_teams"
-  add_foreign_key "trades", "target_teams"
+  add_foreign_key "trades", "teams", column: "starting_team_id"
+  add_foreign_key "trades", "teams", column: "target_team_id"
+
 end

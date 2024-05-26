@@ -1,0 +1,89 @@
+body {
+    text-align: center;
+}
+
+h1, p {
+    font-size: 24px;
+}
+
+.team-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    min-width: 320px;
+    display: inline-block;
+    text-align: left;
+}
+
+.team-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.draft-picks {
+    font-size: 22px;
+}
+
+.left-aligned-list {
+    text-align: left;
+    margin-left: 20px;
+    list-style-type: disc;
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+.trade-button {
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.trade-button:hover {
+    background-color: yellowgreen;
+}
+
+.team-container {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.teams-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.team {
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.team-name {
+    font-weight: bold;
+}
+
+.left-aligned-list {
+    margin-top: 5px;
+}
+
+.highlight {
+    border: 2px solid black; /* Black border around the highlighted item */
+    padding: 5px; /* Add some padding to ensure the border is visible */
+}
+
+.team-names {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

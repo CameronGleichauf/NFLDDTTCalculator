@@ -1,5 +1,4 @@
-<!-- _team_picks.html.erb -->
-
+<!-- _team_picks.html.erb partial -->
 <div class="team-card">
   <h2 class="team-name"><%= "#{prefix} Team: #{team.name}" %></h2>
   <h2 class="draft-picks">Draft Picks</h2>
@@ -9,6 +8,7 @@
     <% team.picks.order(:round, :number).each do |pick| %>
       <li>
         Round <%= pick.round %>, Pick <%= pick.number %>, Value: <%= pick.value %>
+        <%= button_tag "Trade", class: "trade-button", data: { action: "highlight" } %>
       </li>
     <% end %>
   </ul>

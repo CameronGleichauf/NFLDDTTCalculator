@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NFL Draft Trade Calculator</title>
   <style>
-      body {
-          text-align: center;
-      }
-      h1, p {
-          font-size: 24px;
-      }
       .team-card {
           border: 1px solid #ccc;
           padding: 10px;
@@ -17,41 +13,165 @@
           display: inline-block;
           text-align: left;
       }
-      .team-name {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          font-weight: bold;
-      }
-      .draft-picks {
-          font-size: 22px;
-      }
-      .left-aligned-list {
-          text-align: left;
-          margin-left: 20px;
-          list-style-type: disc;
-          padding-left: 20px;
-          font-size: 18px;
-      }
-      .pick-button {
-          display: inline-block;
-          padding: 5px 10px;
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-      }
   </style>
 </head>
 <body>
 <p style="color: green"><%= notice %></p>
 
 <h1>NFL Draft Trade Calculator</h1>
-
+<button id="evaluate-trade-button" style="display: none; margin: 0 auto;">Evaluate this trade</button>
 <div class="teams-container">
   <%= render partial: 'shared/team_picks', locals: { team: @starting_team, prefix: "Starting " } %>
   <%= render partial: 'shared/team_picks', locals: { team: @target_team, prefix: "Target " } %>
 </div>
 
+<script>
+    var startingTeamId = <%= @starting_team.id %>;
+    var targetTeamId = <%= @target_team.id %>;
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const evaluateTradeButton = document.getElementById("evaluate-trade-button");
+
+        function updateButtonVisibility() {
+            var teamCards = document.getElementsByClassName("team-card");
+            var startingTeam = teamCards.item(0);
+            var targetTeam = teamCards.item(1);
+            const startingTeamPicks = Array.from(startingTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+                .map(pick => pick.textContent.trim()).length;
+            const targetTeamPicks = Array.from(targetTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+                .map(pick => pick.textContent.trim()).length;
+
+            if (startingTeamPicks > 0 && targetTeamPicks > 0) {
+                evaluateTradeButton.style.display = "block";
+                evaluateTradeButton.style.alignContent = "center";
+            } else {
+                evaluateTradeButton.style.display = "none";
+            }
+        }
+
+        document.querySelectorAll(".trade-button").forEach(function (button) {
+            button.addEventListener("click", function () {
+                // Toggle highlight class on the parent list item of the clicked button
+                this.parentElement.classList.toggle("highlight");
+                updateButtonVisibility();
+            });
+        });
+
+        document.getElementById("evaluate-trade-button").addEventListener("click", function () {
+            const startingTeamName = "<%= @starting_team&.name %>";
+            const targetTeamName = "<%= @target_team&.name %>";
+
+            var teamCards = document.getElementsByClassName("team-card");
+            var startingTeam = teamCards.item(0);
+            var targetTeam = teamCards.item(1);
+
+            const startingTeamPicks = Array.from(startingTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+                .map(pick => pick.textContent.trim());
+            const targetTeamPicks = Array.from(targetTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+                .map(pick => pick.textContent.trim());
+
+            function formatPicks(picks) {
+                return picks.map(pick => `• ${pick}`).join('<br>');
+            }
+
+            // Calculate total value for starting team
+            const startingTeamTotalValue = startingTeamPicks.reduce((total, pick) => {
+                // Extract the value from the pick text
+                const value = parseFloat(pick.split("Value: ")[1]);
+                return total + value;
+            }, 0);
+
+            // Calculate total value for target team
+            const targetTeamTotalValue = targetTeamPicks.reduce((total, pick) => {
+                // Extract the value from the pick text
+                const value = parseFloat(pick.split("Value: ")[1]);
+                return total + value;
+            }, 0);
+
+            // Determine the winner
+            let winner;
+            if (startingTeamTotalValue > targetTeamTotalValue) {
+                winner = targetTeamName;
+            } else if (targetTeamTotalValue > startingTeamTotalValue) {
+                winner = startingTeamName;
+            } else {
+                winner = "It's a tie!";
+            }
+
+            // Calculate the amount each team won by
+            const winnerAmount = Math.abs(startingTeamTotalValue - targetTeamTotalValue);
+
+            document.body.innerHTML = `
+<div class="winner">
+    <p><strong>Winner: ${winner}</strong></p>
+    <p>${winner} are projected to win this trade by: <strong>${winnerAmount}</strong> points</p>
+</div>
+<button id="save-trade-button">Save this trade</button>
+<div class="teams-container">
+        <div class="team">
+            <h2 class="team-name">Starting Team: ${startingTeamName}</h2>
+            <p style="text-align: left;">Outgoing Picks:</p>
+            <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
+            <p style="text-align: left;">Incoming Picks:</p>
+            <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
+            <p style="text-align: left;">Total Outgoing Value: ${startingTeamTotalValue}</p>
+            <p style="text-align: left;">Total Incoming Value: ${targetTeamTotalValue}</p>
+        </div>
+        <div class="team">
+            <h2 class="team-name">Target Team: ${targetTeamName}</h2>
+            <p style="text-align: left;">Outgoing Picks:</p>
+            <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
+            <p style="text-align: left;">Incoming Picks:</p>
+            <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
+            <p style="text-align: left;">Total Outgoing Value: ${targetTeamTotalValue}</p>
+            <p style="text-align: left;">Total Incoming Value: ${startingTeamTotalValue}</p>
+    </div>
+</div>`;
+
+            document.getElementById("save-trade-button").addEventListener("click", function () {
+                // Send an AJAX request to the save_trade route
+                saveTrade();
+            });
+        });
+
+        function saveTrade() {
+            // Combine trade data and team IDs
+            console.log("startingTeamId: " + startingTeamId);
+            console.log("targetTeamId: " + targetTeamId);
+
+            var data = {
+                trade: {
+                    starting_team_id: startingTeamId,
+                    target_team_id: targetTeamId
+                }
+            };
+
+            // Perform AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/trades/save_trade", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function() {
+                if (xhr.status === 201) {
+                    // Request was successful
+                    console.log("Trade saved successfully.");
+                } else {
+                    // Error handling
+                    console.error("Error saving trade:", xhr.statusText);
+                }
+            };
+
+            xhr.onerror = function() {
+                // Error handling
+                console.error("Request failed.");
+            };
+
+            xhr.send(JSON.stringify(data));
+        }
+    });
+
+
+</script>
 </body>
 </html>
