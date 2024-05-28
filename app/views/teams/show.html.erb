@@ -11,6 +11,20 @@
   <% end %>
 </ul>
 
+<h2>Trades</h2>
+<ul class="left-aligned-list">
+  <% @trades.each do |trade| %>
+    <li>
+      Trade with <%= trade.opponent_team(@team).name %>:
+      <ul>
+        <li>Starting Team Total Value: <%= trade.starting_team_total_value %></li>
+        <li>Target Team Total Value: <%= trade.target_team_total_value %></li>
+        <li>Winner: <%= trade.winner %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
 <div>
   <%= link_to "Back to teams", teams_path %>
 </div>

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'picks/index'
   get 'picks/show'
 
+  resources :picks, only: [:index, :show]
+
   resources :teams, only: [:index, :show] do
     resources :picks, only: [:index]
   end

@@ -8,6 +8,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    @team = Team.find(params[:id])
+    @trades = Trade.where("starting_team_id = ? OR target_team_id = ?", @team.id, @team.id)
   end
 
   # GET /teams/new

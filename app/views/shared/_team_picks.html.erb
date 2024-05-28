@@ -1,4 +1,3 @@
-<!-- _team_picks.html.erb partial -->
 <div class="team-card">
   <h2 class="team-name"><%= "#{prefix} Team: #{team.name}" %></h2>
   <h2 class="draft-picks">Draft Picks</h2>
@@ -6,8 +5,9 @@
     <% total_picks = team.picks.count %>
     <% total_pick_value = team.picks.sum(:value) %>
     <% team.picks.order(:round, :number).each do |pick| %>
-      <li>
+      <li data-pick-id="<%= pick.id %>">
         Round <%= pick.round %>, Pick <%= pick.number %>, Value: <%= pick.value %>
+        <span class="pick-id" data-pick-id="<%= pick.id %>" style="display: none;"><%= pick.id %></span>
         <%= button_tag "Trade", class: "trade-button", data: { action: "highlight" } %>
       </li>
     <% end %>

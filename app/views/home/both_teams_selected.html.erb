@@ -20,6 +20,7 @@
 
 <h1>NFL Draft Trade Calculator</h1>
 <button id="evaluate-trade-button" style="display: none; margin: 0 auto;">Evaluate this trade</button>
+<button id="return-home-button" style="margin-top: 20px;">Return Home</button>
 <div class="teams-container">
   <%= render partial: 'shared/team_picks', locals: { team: @starting_team, prefix: "Starting " } %>
   <%= render partial: 'shared/team_picks', locals: { team: @target_team, prefix: "Target " } %>
@@ -32,6 +33,25 @@
     document.addEventListener("DOMContentLoaded", function () {
 
         const evaluateTradeButton = document.getElementById("evaluate-trade-button");
+
+        const returnHomeButton = document.getElementById("return-home-button");
+        returnHomeButton.addEventListener("click", function() {
+            window.location.href = '/'; // Assuming '/' is the home route
+        });
+
+        // Define an empty array to store picks data
+        let picks = [];
+
+        // Fetch picks data from the server
+        fetch("/picks")
+          .then(response => response.json())
+          .then(data => {
+             console.log("we are populating picks array");
+              picks = data;
+          })
+          .catch(error => {
+              console.error("Error fetching picks:", error);
+          });
 
         function updateButtonVisibility() {
             var teamCards = document.getElementsByClassName("team-card");
@@ -65,6 +85,26 @@
             var teamCards = document.getElementsByClassName("team-card");
             var startingTeam = teamCards.item(0);
             var targetTeam = teamCards.item(1);
+
+            // Define arrays to store pick IDs
+            let startingTeamPickIds = [];
+            let targetTeamPickIds = [];
+
+            // For starting team picks
+            Array.from(startingTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+              .forEach(pick => {
+                  console.log(pick);
+                  const pickId = pick.querySelector('.pick-id').dataset.pickId;
+                  startingTeamPickIds.push(pickId);
+              });
+
+            // For target team picks
+            Array.from(targetTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
+              .forEach(pick => {
+                  const pickId = pick.querySelector('.pick-id').dataset.pickId;
+                  targetTeamPickIds.push(pickId);
+              });
+
 
             const startingTeamPicks = Array.from(startingTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
                 .map(pick => pick.textContent.trim());
@@ -108,6 +148,7 @@
     <p>${winner} are projected to win this trade by: <strong>${winnerAmount}</strong> points</p>
 </div>
 <button id="save-trade-button">Save this trade</button>
+<button id="return-home-button" style="margin-top: 20px;">Return Home</button>
 <div class="teams-container">
         <div class="team">
             <h2 class="team-name">Starting Team: ${startingTeamName}</h2>
@@ -131,19 +172,48 @@
 
             document.getElementById("save-trade-button").addEventListener("click", function () {
                 // Send an AJAX request to the save_trade route
-                saveTrade();
+                saveTrade(startingTeamPickIds, targetTeamPickIds, picks);
+            });
+
+            const returnHomeButton = document.getElementById("return-home-button");
+            returnHomeButton.addEventListener("click", function() {
+                window.location.href = '/'; // Assuming '/' is the home route
             });
         });
 
-        function saveTrade() {
+        function saveTrade(startingTeamPickIds, targetTeamPickIds, picks) {
             // Combine trade data and team IDs
-            console.log("startingTeamId: " + startingTeamId);
-            console.log("targetTeamId: " + targetTeamId);
+            console.log("startingTeamPickIds: " + picks);
+            console.log("targetTeamPickIds: " + targetTeamPickIds);
+
+            // todo: PICK up here, passing in ID (string) instead of Pick object itself here
+            // Define arrays to store pick objects
+            let startingTeamPicks = [];
+            let targetTeamPicks = [];
+
+            startingTeamPickIds.forEach(pickId => {
+                // Fetch pick object based on ID
+                const pick = picks.find(pick => pick.id === pickId);
+                if (pick) {
+                    startingTeamPicks.push(pick);
+                }
+            });
+
+            targetTeamPickIds.forEach(pickId => {
+                // Fetch pick object based on ID
+                const pick = picks.find(pick => pick.id === pickId);
+                if (pick) {
+                    targetTeamPicks.push(pick);
+                }
+            });
+
 
             var data = {
                 trade: {
                     starting_team_id: startingTeamId,
-                    target_team_id: targetTeamId
+                    target_team_id: targetTeamId,
+                    starting_team_picks: startingTeamPicks,
+                    target_team_picks: targetTeamPicks,
                 }
             };
 
