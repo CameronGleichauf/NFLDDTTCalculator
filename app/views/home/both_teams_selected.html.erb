@@ -183,7 +183,7 @@
 
         function saveTrade(startingTeamPickIds, targetTeamPickIds, picks) {
             // Combine trade data and team IDs
-            console.log("startingTeamPickIds: " + picks);
+            console.log("startingTeamPickIds: " + startingTeamPickIds);
             console.log("targetTeamPickIds: " + targetTeamPickIds);
 
             // todo: PICK up here, passing in ID (string) instead of Pick object itself here
@@ -207,13 +207,16 @@
                 }
             });
 
+            console.log(startingTeamPicks);
+            console.log(targetTeamPicks);
+
 
             var data = {
                 trade: {
                     starting_team_id: startingTeamId,
                     target_team_id: targetTeamId,
-                    starting_team_picks: startingTeamPicks,
-                    target_team_picks: targetTeamPicks,
+                    starting_team_picks: startingTeamPickIds,
+                    target_team_picks: targetTeamPickIds,
                 }
             };
 
