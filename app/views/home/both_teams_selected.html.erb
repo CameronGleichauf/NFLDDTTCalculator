@@ -171,6 +171,7 @@
 </div>`;
 
             document.getElementById("save-trade-button").addEventListener("click", function () {
+                console.log("picks: " + picks);
                 // Send an AJAX request to the save_trade route
                 saveTrade(startingTeamPickIds, targetTeamPickIds, picks);
             });
@@ -182,35 +183,7 @@
         });
 
         function saveTrade(startingTeamPickIds, targetTeamPickIds, picks) {
-            // Combine trade data and team IDs
-            console.log("startingTeamPickIds: " + startingTeamPickIds);
-            console.log("targetTeamPickIds: " + targetTeamPickIds);
-
-            // todo: PICK up here, passing in ID (string) instead of Pick object itself here
-            // Define arrays to store pick objects
-            let startingTeamPicks = [];
-            let targetTeamPicks = [];
-
-            startingTeamPickIds.forEach(pickId => {
-                // Fetch pick object based on ID
-                const pick = picks.find(pick => pick.id === pickId);
-                if (pick) {
-                    startingTeamPicks.push(pick);
-                }
-            });
-
-            targetTeamPickIds.forEach(pickId => {
-                // Fetch pick object based on ID
-                const pick = picks.find(pick => pick.id === pickId);
-                if (pick) {
-                    targetTeamPicks.push(pick);
-                }
-            });
-
-            console.log(startingTeamPicks);
-            console.log(targetTeamPicks);
-
-
+            // todo: determine if we need to pass some other data type in here to access picks successfully
             var data = {
                 trade: {
                     starting_team_id: startingTeamId,
