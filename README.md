@@ -23,3 +23,8 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 ## Nice To Have Features:
 - Add a 3rd team
 - Add future draft picks 
+
+## Reset Database 
+- To reset the database and seed with initial values:
+  - `bin/rails db:schema:load`    
+  - `bin/rails db:seed` 
