@@ -26,5 +26,6 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 
 ## Reset Database 
 - To reset the database and seed with initial values:
-  - `bin/rails db:schema:load`    
-  - `bin/rails db:seed` 
+  - `rails db:drop`
+  - `rails db:schema:load`    
+  - `rails db:seed` 
