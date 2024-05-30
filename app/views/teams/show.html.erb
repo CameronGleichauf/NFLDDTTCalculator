@@ -19,17 +19,24 @@
       <ul>
         <li>Starting Team Total Value: <%= trade.starting_team_picks_value %></li>
         <li>Target Team Total Value: <%= trade.target_team_picks_value %></li>
-        <li>Starting Team Picks: <%= trade.starting_team_picks %></li>
-        <li>Target Team Picks: <%= trade.target_team_picks %></li>
-        <ul class="left-aligned-list">
-          <% trade.starting_team_picks.each do |pick| %>
-            <li>
-              Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
-            </li>
-          <% end %>
-        </ul>
-
-
+        <li>Starting Team Picks:
+          <ul class="left-aligned-list">
+            <% trade.starting_team_picks.each do |pick| %>
+              <li>
+                Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+        <li>Target Team Picks:
+          <ul class="left-aligned-list">
+            <% trade.target_team_picks.each do |pick| %>
+              <li>
+                Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
         <li>Winner: <%= trade.winner %></li>
       </ul>
     </li>

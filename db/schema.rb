@@ -39,8 +39,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_24_173027) do
   create_table "trades", force: :cascade do |t|
     t.integer "starting_team_id", null: false
     t.integer "target_team_id", null: false
-    t.float "starting_team_total_value"
-    t.float "target_team_total_value"
+    t.integer "starting_team_total_value"
+    t.integer "target_team_total_value"
     t.string "winner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

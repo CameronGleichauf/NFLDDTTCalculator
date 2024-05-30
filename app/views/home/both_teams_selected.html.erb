@@ -46,7 +46,6 @@
         fetch("/picks")
           .then(response => response.json())
           .then(data => {
-             console.log("we are populating picks array");
               picks = data;
           })
           .catch(error => {
@@ -171,7 +170,8 @@
 </div>`;
 
             document.getElementById("save-trade-button").addEventListener("click", function () {
-                console.log("picks: " + picks);
+                console.log("startingTeamPickIds: " + startingTeamPickIds);
+                console.log("targetTeamPickIds: " + targetTeamPickIds);
                 // Send an AJAX request to the save_trade route
                 saveTrade(startingTeamPickIds, targetTeamPickIds, picks);
             });
@@ -188,8 +188,8 @@
                 trade: {
                     starting_team_id: startingTeamId,
                     target_team_id: targetTeamId,
-                    starting_team_picks: startingTeamPickIds,
-                    target_team_picks: targetTeamPickIds,
+                    starting_team_pick_ids: startingTeamPickIds,
+                    target_team_pick_ids: targetTeamPickIds,
                 }
             };
 

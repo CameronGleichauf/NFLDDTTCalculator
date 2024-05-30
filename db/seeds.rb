@@ -13,9 +13,12 @@
 
 require_relative 'jj_trade_value_chart'
 
-# Clear existing data
-Pick.destroy_all
-Team.destroy_all
+ActiveRecord::Base.transaction do
+  Trade.destroy_all
+  Pick.destroy_all
+
+  Team.destroy_all
+end
 
 # NFL teams list with unique IDs
 # db/seeds.rb
