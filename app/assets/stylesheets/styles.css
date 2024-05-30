@@ -85,5 +85,43 @@ h1, p {
 .button-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
+
+.button {
+    color: black;
+    border: 2px solid black;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.button:hover {
+    background-color: yellowgreen;
+}
+
+.upper-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-container {
+    margin-bottom: 10px;
+}
+
+.button {
+    color: black;
+    border: 2px solid black; /* Add border styling */
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none; /* Remove default underline for links */
+    display: inline-block; /* Ensure inline display */
+    margin-right: 10px; /* Add some margin between buttons */
+}
+
+

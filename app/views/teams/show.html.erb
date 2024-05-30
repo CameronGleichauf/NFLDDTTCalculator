@@ -2,7 +2,18 @@
 
 <h1><%= @team.name %></h1>
 
-<h2>Draft Picks</h2>
+<div class="upper-left">
+  <div class="button-container">
+    <%= link_to "Trade Calculator", root_path, class: "button" %>
+  </div>
+
+  <div class="button-container">
+    <%= link_to "Teams View", teams_path, class: "button" %>
+  </div>
+</div>
+
+
+<h2>Current Draft Picks</h2>
 <ul class="left-aligned-list">
   <% @team.picks.order(:round, :number).each do |pick| %>
     <li>
@@ -11,38 +22,39 @@
   <% end %>
 </ul>
 
-<h2>Trades</h2>
-<ul class="left-aligned-list">
-  <% @trades.each do |trade| %>
-    <li>
-      Trade with <%= trade.opponent_team(@team).name %>:
-      <ul>
-        <li>Starting Team Total Value: <%= trade.starting_team_picks_value %></li>
-        <li>Target Team Total Value: <%= trade.target_team_picks_value %></li>
-        <li>Starting Team Picks:
-          <ul class="left-aligned-list">
-            <% trade.starting_team_picks.each do |pick| %>
-              <li>
-                Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-        <li>Target Team Picks:
-          <ul class="left-aligned-list">
-            <% trade.target_team_picks.each do |pick| %>
-              <li>
-                Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-        <li>Winner: <%= trade.winner %></li>
-      </ul>
-    </li>
-  <% end %>
-</ul>
-
-<div>
-  <%= link_to "Back to teams", teams_path %>
-</div>
+<h2>Saved Trades</h2>
+<% if @trades.present? %>
+  <ul class="left-aligned-list">
+    <% @trades.each do |trade| %>
+      <li>
+        Trade with <strong><%= trade.opponent_team(@team).name %> </strong> proposed by <strong><%= trade.starting_team.name %></strong>:
+        <ul>
+          <li><strong>Winner: <%= trade.winner %></strong></li>
+          <li><%= trade.starting_team.name %> Receive:
+            <ul class="left-aligned-list">
+              <% trade.starting_team_picks.each do |pick| %>
+                <li>
+                  Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= trade.target_team.name %> Receive:
+            <ul class="left-aligned-list">
+              <% trade.target_team_picks.each do |pick| %>
+                <li>
+                  Round <%= pick.round %>, Pick <%= pick.number %>: Value <%= pick.value %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li><%= trade.starting_team.name %> Total Value: <%= trade.starting_team_picks_value %></li>
+          <li><%= trade.target_team.name %> Total Value: <%= trade.target_team_picks_value %></li>
+          <li>Trade value difference: <%= (trade.starting_team_picks_value - trade.target_team_picks_value).abs %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No saved trades yet for <%= @team.name %></p>
+<% end %>

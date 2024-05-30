@@ -2,6 +2,12 @@
 
 <h1>Teams</h1>
 
+<div class="upper-left">
+  <div class="button-container">
+    <%= link_to "Trade Calculator", root_path, class: "button" %>
+  </div>
+</div>
+
 <div id="teams" class="flex-container">
   <% @teams.each do |team| %>
     <div class="team-card">

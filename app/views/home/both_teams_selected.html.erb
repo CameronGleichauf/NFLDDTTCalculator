@@ -20,7 +20,15 @@
 
 <h1>NFL Draft Trade Calculator</h1>
 <button id="evaluate-trade-button" style="display: none; margin: 0 auto;">Evaluate this trade</button>
-<button id="return-home-button" style="margin-top: 20px;">Return Home</button>
+<div class="upper-left">
+  <div class="button-container">
+    <%= link_to "Trade Calculator", root_path, class: "button" %>
+  </div>
+
+  <div class="button-container">
+    <%= link_to "Teams View", teams_path, class: "button" %>
+  </div>
+</div>
 <div class="teams-container">
   <%= render partial: 'shared/team_picks', locals: { team: @starting_team, prefix: "Starting " } %>
   <%= render partial: 'shared/team_picks', locals: { team: @target_team, prefix: "Target " } %>
@@ -170,10 +178,7 @@
 </div>`;
 
             document.getElementById("save-trade-button").addEventListener("click", function () {
-                console.log("startingTeamPickIds: " + startingTeamPickIds);
-                console.log("targetTeamPickIds: " + targetTeamPickIds);
-                // Send an AJAX request to the save_trade route
-                saveTrade(startingTeamPickIds, targetTeamPickIds, picks);
+                saveTrade(startingTeamPickIds, targetTeamPickIds);
             });
 
             const returnHomeButton = document.getElementById("return-home-button");
@@ -182,7 +187,7 @@
             });
         });
 
-        function saveTrade(startingTeamPickIds, targetTeamPickIds, picks) {
+        function saveTrade(startingTeamPickIds, targetTeamPickIds) {
             // todo: determine if we need to pass some other data type in here to access picks successfully
             var data = {
                 trade: {
@@ -202,9 +207,10 @@
                 if (xhr.status === 201) {
                     // Request was successful
                     console.log("Trade saved successfully.");
+                    alert("Trade saved successfully!");
                 } else {
-                    // Error handling
                     console.error("Error saving trade:", xhr.statusText);
+                    alert("Trade failed to save!");
                 }
             };
 
