@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Picks</title>
+</head>
+<body>
+<h1>All Picks</h1>
+
+<ul>
+  <% @picks.each do |pick| %>
+    <li>
+      <p>Team: <%= pick.team.name %></p>
+      <p>Round: <%= pick.round %></p>
+      <p>Pick within Round: <%= pick.number %></p>
+      <p>Pick Value: <%= pick.value %></p>
+      <%= link_to "View Details", picks_index_path(pick) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back to Teams", teams_path %>
+</body>
+</html>

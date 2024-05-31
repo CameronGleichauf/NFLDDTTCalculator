@@ -42,11 +42,6 @@
 
         const evaluateTradeButton = document.getElementById("evaluate-trade-button");
 
-        const returnHomeButton = document.getElementById("return-home-button");
-        returnHomeButton.addEventListener("click", function() {
-            window.location.href = '/'; // Assuming '/' is the home route
-        });
-
         // Define an empty array to store picks data
         let picks = [];
 
@@ -154,8 +149,13 @@
     <p><strong>Winner: ${winner}</strong></p>
     <p>${winner} are projected to win this trade by: <strong>${winnerAmount}</strong> points</p>
 </div>
-<button id="save-trade-button">Save this trade</button>
-<button id="return-home-button" style="margin-top: 20px;">Return Home</button>
+<div class="upper-left">
+  <div class="button-container">
+    <%= link_to "Teams View", teams_path, class: "button" %>
+  </div>
+</div>
+<button id="save-trade-button">Save Trade</button>
+<button id="discard-trade-button">Discard Trade</button>
 <div class="teams-container">
         <div class="team">
             <h2 class="team-name">Starting Team: ${startingTeamName}</h2>
@@ -181,8 +181,8 @@
                 saveTrade(startingTeamPickIds, targetTeamPickIds);
             });
 
-            const returnHomeButton = document.getElementById("return-home-button");
-            returnHomeButton.addEventListener("click", function() {
+            const discardTradeButton = document.getElementById("discard-trade-button");
+            discardTradeButton.addEventListener("click", function() {
                 window.location.href = '/'; // Assuming '/' is the home route
             });
         });

@@ -49,8 +49,8 @@ h1, p {
 
 
 .highlight {
-    border: 2px solid black; /* Black border around the highlighted item */
-    padding: 5px; /* Add some padding to ensure the border is visible */
+    border: 2px solid black;
+    padding: 5px;
 }
 
 #save-trade-button {
@@ -59,6 +59,18 @@ h1, p {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 3px;
+}
+
+#discard-trade-button {
+    color: black;
+    border: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#discard-trade-button:hover {
+    background-color: yellowgreen;
 }
 
 #save-trade-button:hover {

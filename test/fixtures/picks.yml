@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team: one
+  round: 1
+  number: 1
+  value: 1
+
+two:
+  team: two
+  round: 1
+  number: 1
+  value: 1
