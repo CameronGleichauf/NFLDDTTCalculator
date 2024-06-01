@@ -3,9 +3,15 @@
 # Display current files in the directory
 ls
 
+cd db
+
+echo "this is what is in db directory:"
+
+cd ..
+
 # Remove the SQLite database file if it exists
 if [ -f db/development.sqlite3 ]; then
-  echo "we are removeing SQLite db"
+  echo "we are removing SQLite db"
   rm db/development.sqlite3
 fi
 
