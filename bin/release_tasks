@@ -3,12 +3,6 @@
 # Display current files in the directory
 ls
 
-cd db
-
-echo "this is what is in db directory:"
-
-cd ..
-
 # Remove the SQLite database file if it exists
 if [ -f db/development.sqlite3 ]; then
   echo "we are removing SQLite db"
@@ -19,7 +13,15 @@ fi
 touch db/development.sqlite3
 
 # Run migrations
-bundle exec rails db:migrate
+bundle exec rails db:drop
+
+# Run migrations
+bundle exec rails db:schema:load
+
+# seed database
+bundle exec rails db:seed
+
+
 
 # Seed the database
 bundle exec rails db:seed
