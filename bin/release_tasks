@@ -3,10 +3,7 @@
 # Display current files in the directory
 ls
 
-# Run migrations
-bundle exec rails db:drop
-
-# Run migrations
+# Load schema into the database
 bundle exec rails db:schema:load
 
 # Seed the database
