@@ -12,7 +12,7 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  config.hosts << "nfl-dd-tt-1297b0c9e756.herokuapp.com"
+  config.hosts << "nfl-78c46e35d347.herokuapp.com"
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
