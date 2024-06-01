@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92fc0696-0087-48fe-a983-5e350acd1577" name="Changes" comment="Committing trades_controller updates">
+    <list default="true" id="92fc0696-0087-48fe-a983-5e350acd1577" name="Changes" comment="Updating database.yml">
       <change beforePath="$PROJECT_DIR$/.idea/NFLDDTTCalculatorV4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NFLDDTTCalculatorV4.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ruby-version" beforeDir="false" afterPath="$PROJECT_DIR$/.ruby-version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -228,6 +225,7 @@
       <workItem from="1716565537916" duration="24412000" />
       <workItem from="1716681175722" duration="38070000" />
       <workItem from="1717202169046" duration="133000" />
+      <workItem from="1717268815987" duration="264000" />
     </task>
     <task id="LOCAL-00001" summary="Making UI flexible and removing IDs from display">
       <option name="closed" value="true" />
