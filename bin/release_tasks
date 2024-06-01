@@ -5,10 +5,9 @@ ls
 
 # Remove the SQLite database file if it exists
 if [ -f db/development.sqlite3 ]; then
+  echo "we are removeing SQLite db"
   rm db/development.sqlite3
 fi
-
-echo "can you see this cam"
 
 # Create an empty SQLite database file
 touch db/development.sqlite3
