@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92fc0696-0087-48fe-a983-5e350acd1577" name="Changes" comment="UI/UX Readability and Usability Updates">
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/home/both_teams_selected.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/both_teams_selected.html.erb" afterDir="false" />
+    <list default="true" id="92fc0696-0087-48fe-a983-5e350acd1577" name="Changes" comment="Committing trades_controller updates">
+      <change beforePath="$PROJECT_DIR$/.idea/NFLDDTTCalculatorV4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NFLDDTTCalculatorV4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ruby-version" beforeDir="false" afterPath="$PROJECT_DIR$/.ruby-version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +226,8 @@
       <workItem from="1716565400824" duration="78000" />
       <workItem from="1716565488905" duration="46000" />
       <workItem from="1716565537916" duration="24412000" />
-      <workItem from="1716681175722" duration="35600000" />
+      <workItem from="1716681175722" duration="38070000" />
+      <workItem from="1717202169046" duration="133000" />
     </task>
     <task id="LOCAL-00001" summary="Making UI flexible and removing IDs from display">
       <option name="closed" value="true" />
@@ -320,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717035032408</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Committing trades_controller updates">
+      <option name="closed" value="true" />
+      <created>1717123171941</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717123171942</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +351,8 @@
     <MESSAGE value="Updating DB Reset Instructions to README.md" />
     <MESSAGE value="Trades Saving and Displaying" />
     <MESSAGE value="UI/UX Readability and Usability Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="UI/UX Readability and Usability Updates" />
+    <MESSAGE value="Committing trades_controller updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Committing trades_controller updates" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
