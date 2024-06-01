@@ -3,25 +3,11 @@
 # Display current files in the directory
 ls
 
-# Remove the SQLite database file if it exists
-if [ -f db/development.sqlite3 ]; then
-  echo "we are removing SQLite db"
-  rm db/development.sqlite3
-fi
-
-# Create an empty SQLite database file
-touch db/development.sqlite3
-
 # Run migrations
 bundle exec rails db:drop
 
 # Run migrations
 bundle exec rails db:schema:load
-
-# seed database
-bundle exec rails db:seed
-
-
 
 # Seed the database
 bundle exec rails db:seed
