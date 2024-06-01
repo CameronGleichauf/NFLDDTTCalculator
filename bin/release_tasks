@@ -4,7 +4,7 @@
 ls
 
 # Load schema into the database
-bundle exec rails db:schema:load
+bundle exec heroku run rails db:schema:load
 
 # Seed the database
-bundle exec rails db:seed
+bundle exec heroku run rails db:seed
