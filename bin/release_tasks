@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Display current files in the directory
+ls
+
+# Remove the SQLite database file if it exists
+if [ -f db/development.sqlite3 ]; then
+  rm db/development.sqlite3
+fi
+
+echo "can you see this cam"
+
+# Create an empty SQLite database file
+touch db/development.sqlite3
+
+# Run migrations
+bundle exec rails db:migrate
+
+# Seed the database
+bundle exec rails db:seed
