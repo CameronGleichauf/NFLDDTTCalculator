@@ -17,7 +17,7 @@
       Total Number of Picks: <%= total_picks %>
     </li>
     <li>
-      Draft Capital Value: <%= total_pick_value %>
+      Draft Capital Value: <%= number_with_precision(total_pick_value, precision: 1) %>
     </li>
   </ul>
   <p>

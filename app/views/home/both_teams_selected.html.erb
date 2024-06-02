@@ -111,19 +111,29 @@
                 const formattedPicks = picks.map(pick => `• ${pick}`);
                 // hacky solution come back and refactor if u can cam
                 let formattedString = formattedPicks.slice(0, -2).join('<br>') + (formattedPicks.length > 2 ? '<br>' : '') + formattedPicks.slice(-2).join('<br>');
-                formattedString = formattedString.split('\n')[0];
-                return formattedString
+                formattedString = formattedString.split('\n');
+
+                formattedString.forEach((item, index) => {
+                    formattedString[index] = item.replace("Trade", "");
+                });
+
+                let formattedStringList = formattedString.map(str => {
+                    let trimmedStr = str.trim();
+                    return trimmedStr.length !== 4 ? str.replace(/,([^,]*)$/, '$1') : "";
+                });
+
+                return formattedStringList;
             }
 
             const startingTeamTotalValue = startingTeamPicks.reduce((total, pick) => {
                 const value = parseFloat(pick.split("Value: ")[1]);
                 return total + value;
-            }, 0);
+            }, 0).toFixed(1);
 
             const targetTeamTotalValue = targetTeamPicks.reduce((total, pick) => {
                 const value = parseFloat(pick.split("Value: ")[1]);
                 return total + value;
-            }, 0);
+            }, 0).toFixed(1);
 
             let winner;
             if (startingTeamTotalValue > targetTeamTotalValue) {
@@ -137,6 +147,10 @@
             const winnerAmount = Math.abs(startingTeamTotalValue - targetTeamTotalValue);
             // round and truncate to avoid edge case
             const truncatedWinnerAmount = Math.round(winnerAmount * 10) / 10;
+
+
+            const startingTeamPicksText = formatPicks(startingTeamPicks).toString().replaceAll(",,", "");
+            const targetTeamPicksText = formatPicks(targetTeamPicks).toString().replaceAll(",,", "");
 
             document.body.innerHTML = `
 <div class="winner">
@@ -154,18 +168,18 @@
         <div class="team">
             <h2 class="team-name">Starting Team: ${startingTeamName}</h2>
             <p style="text-align: left;">Outgoing Picks:</p>
-            <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
+            <p class="left-aligned-list">${startingTeamPicksText}</p>
             <p style="text-align: left;">Incoming Picks:</p>
-            <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
+            <p class="left-aligned-list">${targetTeamPicksText}</p>
             <p style="text-align: left;">Outgoing Capital Value: ${startingTeamTotalValue}</p>
             <p style="text-align: left;">Incoming Capital Value: ${targetTeamTotalValue}</p>
         </div>
         <div class="team">
             <h2 class="team-name">Target Team: ${targetTeamName}</h2>
             <p style="text-align: left;">Outgoing Picks:</p>
-            <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
+            <p class="left-aligned-list">${targetTeamPicksText}</p>
             <p style="text-align: left;">Incoming Picks:</p>
-            <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
+            <p class="left-aligned-list">${startingTeamPicksText}</p>
             <p style="text-align: left;">Outgoing Capital Value: ${targetTeamTotalValue}</p>
             <p style="text-align: left;">Incoming Capital Value: ${startingTeamTotalValue}</p>
     </div>

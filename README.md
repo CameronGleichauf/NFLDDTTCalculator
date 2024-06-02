@@ -12,10 +12,6 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 - Additional Features:
   - Delete existing trades by team
 
-
-## Tech Debt
-- Code Cleanup
-
 ## Future Features
 These are features that were not able to be included in this release, but would be of high priority for a future release. 
 - Delete individual saved trades
@@ -24,6 +20,7 @@ These are features that were not able to be included in this release, but would 
 - Prevent saving of duplicate trades
 - Add a 3rd team
 - Add future draft picks
+- Assign pick order based on merit/previous standings (instead of alphabetically) 
 
 ## Code 
 This project runs on [Ruby on Rails](https://rubyonrails.org/), a breakdown of relevant files can be found below:
@@ -41,10 +38,3 @@ This project runs on [Ruby on Rails](https://rubyonrails.org/), a breakdown of r
     - Idempotent code responsible for defining starting data necessary to run application
   - [jj_trade_value_chart.rb](https://github.com/CameronGleichauf/NFLDDTTCalculator/blob/main/db/jj_trade_value_chart.rb)
     - File that defines the Picks and their associated values based on the [Jimmy Johnson framework](https://www.nytimes.com/athletic/5426403/2024/04/25/nfl-draft-trade-value-chart-jimmy-johnson-explained/)
-
-# Runbooking
-## Reset Database 
-- To reset the database and seed with initial values:
-  - `rails db:drop`
-  - `rails db:schema:load`    
-  - `rails db:seed` 
