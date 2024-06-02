@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   get "/teams/:id", to: "teams#show"
 
   post '/trades/save_trade', to: 'trades#save_trade'
+  delete 'teams/:id/clear_trades', to: 'teams#clear_trades', as: 'clear_trades'
 end

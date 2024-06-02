@@ -23,6 +23,11 @@
 </ul>
 
 <h2>Saved Trades</h2>
+<div class="clear-trades-container">
+  <%= form_with(url: clear_trades_path(@team), method: :delete, data: { confirm: 'Are you sure you want to clear all existing trades?' }) do |form| %>
+    <%= form.submit "Clear all existing trades for #{@team.name}", class: "button" %>
+  <% end %>
+</div>
 <% if @trades.present? %>
   <ul class="left-aligned-list">
     <% @trades.each do |trade| %>

@@ -14,9 +14,9 @@
 require_relative 'jj_trade_value_chart'
 
 ActiveRecord::Base.transaction do
+  TradePick.destroy_all
   Trade.destroy_all
   Pick.destroy_all
-
   Team.destroy_all
 end
 

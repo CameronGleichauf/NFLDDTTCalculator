@@ -1,7 +1,7 @@
 class Trade < ApplicationRecord
   belongs_to :starting_team, class_name: 'Team', foreign_key: 'starting_team_id'
   belongs_to :target_team, class_name: 'Team', foreign_key: 'target_team_id'
-  has_many :trade_picks
+  has_many :trade_picks, dependent: :destroy
   has_many :picks, through: :trade_picks
 
   def opponent_team(team)

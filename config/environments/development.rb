@@ -11,7 +11,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  config.hosts << "nfl-dd-tt-1297b0c9e756.herokuapp.com"
+  config.hosts << "nfl-78c46e35d347.herokuapp.com"
 
   # Show full error reports.
   config.consider_all_requests_local = true

@@ -35,8 +35,8 @@ class TradesController < ApplicationController
     trade = Trade.new(
       starting_team_id: trade_params[:starting_team_id],
       target_team_id: trade_params[:target_team_id],
-      starting_team_total_value: 45,
-      target_team_total_value: 37
+      starting_team_total_value: calculate_total_value(trade_params[:starting_team_pick_ids]),
+      target_team_total_value: calculate_total_value(trade_params[:target_team_pick_ids])
     )
 
     # Save the trade
@@ -74,6 +74,12 @@ class TradesController < ApplicationController
       # If there's an error saving the trade, return an error response
       render json: { status: 'error', errors: trade.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def calculate_total_value(pick_ids)
+    picks = Pick.where(id: pick_ids)
+    total_value = picks.sum(:value)
+    total_value
   end
 
   def show

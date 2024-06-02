@@ -36,6 +36,23 @@ class TeamsController < ApplicationController
     end
   end
 
+  def clear_trades
+    @team = Team.find(params[:id])
+    @team.starting_trades.each do |trade|
+      trade.trade_picks.destroy_all
+      trade.destroy
+    end
+    @team.target_trades.each do |trade|
+      trade.trade_picks.destroy_all
+      trade.destroy
+    end
+
+    respond_to do |format|
+      format.html { redirect_to @team }
+      format.js # Render default JavaScript view
+    end
+  end
+
   # PATCH/PUT /teams/1 or /teams/1.json
   def update
     respond_to do |format|

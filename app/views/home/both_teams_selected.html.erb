@@ -114,24 +114,23 @@
                 .map(pick => pick.textContent.trim());
 
             function formatPicks(picks) {
-                return picks.map(pick => `• ${pick}`).join('<br>');
+                const formattedPicks = picks.map(pick => `• ${pick}`);
+                // hacky solution come back and refactor if u can cam
+                let formattedString = formattedPicks.slice(0, -2).join('<br>') + (formattedPicks.length > 2 ? '<br>' : '') + formattedPicks.slice(-2).join('<br>');
+                formattedString = formattedString.split('\n')[0];
+                return formattedString
             }
 
-            // Calculate total value for starting team
             const startingTeamTotalValue = startingTeamPicks.reduce((total, pick) => {
-                // Extract the value from the pick text
                 const value = parseFloat(pick.split("Value: ")[1]);
                 return total + value;
             }, 0);
 
-            // Calculate total value for target team
             const targetTeamTotalValue = targetTeamPicks.reduce((total, pick) => {
-                // Extract the value from the pick text
                 const value = parseFloat(pick.split("Value: ")[1]);
                 return total + value;
             }, 0);
 
-            // Determine the winner
             let winner;
             if (startingTeamTotalValue > targetTeamTotalValue) {
                 winner = targetTeamName;
@@ -141,7 +140,6 @@
                 winner = "It's a tie!";
             }
 
-            // Calculate the amount each team won by
             const winnerAmount = Math.abs(startingTeamTotalValue - targetTeamTotalValue);
 
             document.body.innerHTML = `

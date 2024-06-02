@@ -16,12 +16,11 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 ## Tech Debt
 - Update JJ framework 
 - UI Improvements
+  - Show trade calculator and teams view buttons on `one_team_selected` view 
 - Code Cleanup
-- Creating database in prod environment
-- Deployment for live consumption
 - Testing
 
-## Nice To Have Features:
+## Future Features
 - Execute Trades (swap picks)
 - Add a 3rd team
 - Add future draft picks
