@@ -53,8 +53,8 @@
               <% end %>
             </ul>
           </li>
-          <li><%= trade.starting_team.name %> Total Value: <%= trade.starting_team_picks_value %></li>
-          <li><%= trade.target_team.name %> Total Value: <%= trade.target_team_picks_value %></li>
+          <li><%= trade.starting_team.name %> Total Receiving Value: <%= trade.starting_team_picks_value %></li>
+          <li><%= trade.target_team.name %> Total Receiving Value: <%= trade.target_team_picks_value %></li>
           <li>Trade value difference: <%= (trade.starting_team_picks_value - trade.target_team_picks_value).abs %></li>
         </ul>
       </li>

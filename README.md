@@ -1,11 +1,16 @@
 # README
 
+[NFL Draft Day Trade Tool Calculator application](https://nfl-78c46e35d347.herokuapp.com/)
+
 This project creates an NFL Draft Day Trade Tool Calculator application that does the following:
-- Shows each pick and individual value for "starting" team
-- Shows each pick and individual value for "target" team
-- Shows total cumulative picks for each team
-- Shows total cumulative value of picks based on [Jimmy Johnson framework](https://www.nytimes.com/athletic/5426403/2024/04/25/nfl-draft-trade-value-chart-jimmy-johnson-explained/)
-- Enables trading between teams
+- Minimum Features:
+  - Show what picks the "starting" team has
+  - Show what picks the “target” team has
+  - Add up the value of the picks in a given trade offer and evaluate which team comes out ahead
+    - Pick Value based on [Jimmy Johnson framework](https://www.nytimes.com/athletic/5426403/2024/04/25/nfl-draft-trade-value-chart-jimmy-johnson-explained/)
+  - Save previous offers so they can be compared to new offers (potentially from different teams)
+- Additional Features:
+  - Clear existing trades by team
 
 
 ## Minimum Features still in Development:
@@ -17,15 +22,15 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 - Update JJ framework 
 - UI Improvements
   - Show trade calculator and teams view buttons on `one_team_selected` view 
+  - Once `Save Trade` button is clicked, automatically bring team back to home page
 - Code Cleanup
-- Testing
 
 ## Future Features
 - Execute Trades (swap picks)
+- Amend (but not delete) Saved Trades
+- Prevent Saving of Duplicate Trades
 - Add a 3rd team
 - Add future draft picks
-- Amend Saved Trades
-- Prevent Saving of Duplicate Trades 
 
 # Runbooking
 ## Reset Database 
