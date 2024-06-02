@@ -42,10 +42,8 @@
 
         const evaluateTradeButton = document.getElementById("evaluate-trade-button");
 
-        // Define an empty array to store picks data
         let picks = [];
 
-        // Fetch picks data from the server
         fetch("/picks")
           .then(response => response.json())
           .then(data => {
@@ -74,7 +72,6 @@
 
         document.querySelectorAll(".trade-button").forEach(function (button) {
             button.addEventListener("click", function () {
-                // Toggle highlight class on the parent list item of the clicked button
                 this.parentElement.classList.toggle("highlight");
                 updateButtonVisibility();
             });
@@ -88,11 +85,9 @@
             var startingTeam = teamCards.item(0);
             var targetTeam = teamCards.item(1);
 
-            // Define arrays to store pick IDs
             let startingTeamPickIds = [];
             let targetTeamPickIds = [];
 
-            // For starting team picks
             Array.from(startingTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
               .forEach(pick => {
                   console.log(pick);
@@ -100,7 +95,6 @@
                   startingTeamPickIds.push(pickId);
               });
 
-            // For target team picks
             Array.from(targetTeam.getElementsByClassName("left-aligned-list").item(0).getElementsByClassName("highlight"))
               .forEach(pick => {
                   const pickId = pick.querySelector('.pick-id').dataset.pickId;
@@ -141,11 +135,13 @@
             }
 
             const winnerAmount = Math.abs(startingTeamTotalValue - targetTeamTotalValue);
+            // round and truncate to avoid edge case
+            const truncatedWinnerAmount = Math.round(winnerAmount * 10) / 10;
 
             document.body.innerHTML = `
 <div class="winner">
     <p><strong>Winner: ${winner}</strong></p>
-    <p>${winner} are projected to win this trade by: <strong>${winnerAmount}</strong> points</p>
+    <p>${winner} are projected to win this trade by: <strong>${truncatedWinnerAmount}</strong> points</p>
 </div>
 <div class="upper-left">
   <div class="button-container">
@@ -161,8 +157,8 @@
             <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
             <p style="text-align: left;">Incoming Picks:</p>
             <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
-            <p style="text-align: left;">Total Outgoing Picks Value: ${startingTeamTotalValue}</p>
-            <p style="text-align: left;">Total Incoming Picks Value: ${targetTeamTotalValue}</p>
+            <p style="text-align: left;">Outgoing Capital Value: ${startingTeamTotalValue}</p>
+            <p style="text-align: left;">Incoming Capital Value: ${targetTeamTotalValue}</p>
         </div>
         <div class="team">
             <h2 class="team-name">Target Team: ${targetTeamName}</h2>
@@ -170,8 +166,8 @@
             <p class="left-aligned-list">${formatPicks(targetTeamPicks)}</p>
             <p style="text-align: left;">Incoming Picks:</p>
             <p class="left-aligned-list">${formatPicks(startingTeamPicks)}</p>
-            <p style="text-align: left;">Total Outgoing Picks Value: ${targetTeamTotalValue}</p>
-            <p style="text-align: left;">Total Incoming Picks Value: ${startingTeamTotalValue}</p>
+            <p style="text-align: left;">Outgoing Capital Value: ${targetTeamTotalValue}</p>
+            <p style="text-align: left;">Incoming Capital Value: ${startingTeamTotalValue}</p>
     </div>
 </div>`;
 
@@ -186,7 +182,6 @@
         });
 
         function saveTrade(startingTeamPickIds, targetTeamPickIds) {
-            // todo: determine if we need to pass some other data type in here to access picks successfully
             var data = {
                 trade: {
                     starting_team_id: startingTeamId,
@@ -196,14 +191,12 @@
                 }
             };
 
-            // Perform AJAX request
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/trades/save_trade", true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
             xhr.onload = function() {
                 if (xhr.status === 201) {
-                    // Request was successful
                     console.log("Trade saved successfully.");
                     alert("Trade saved successfully!");
                 } else {
@@ -213,7 +206,6 @@
             };
 
             xhr.onerror = function() {
-                // Error handling
                 console.error("Request failed.");
             };
 

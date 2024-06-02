@@ -28,10 +28,8 @@ class TradesController < ApplicationController
   end
 
   def save_trade
-    # Extract trade data from params
     trade_params = params.require(:trade).permit(:starting_team_id, :target_team_id, starting_team_pick_ids: [], target_team_pick_ids: [])
 
-    # Create a new Trade instance with the provided data
     trade = Trade.new(
       starting_team_id: trade_params[:starting_team_id],
       target_team_id: trade_params[:target_team_id],
@@ -39,9 +37,7 @@ class TradesController < ApplicationController
       target_team_total_value: calculate_total_value(trade_params[:target_team_pick_ids])
     )
 
-    # Save the trade
     if trade.save
-      # Iterate over the starting team pick IDs and associate them with the trade
       trade_params[:starting_team_pick_ids].each do |pick_id|
         pick = Pick.find_by(id: pick_id)
         if pick.present?
@@ -68,10 +64,8 @@ class TradesController < ApplicationController
       end
 
 
-      # Provide feedback to the user
       render json: { status: 'success', message: 'Trade saved successfully' }, status: :created
     else
-      # If there's an error saving the trade, return an error response
       render json: { status: 'error', errors: trade.errors.full_messages }, status: :unprocessable_entity
     end
   end

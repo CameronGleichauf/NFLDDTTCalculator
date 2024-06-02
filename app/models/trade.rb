@@ -9,13 +9,11 @@ class Trade < ApplicationRecord
   end
 
   def starting_team_picks
-    puts "we are inside starting_team_picks"
     puts "Trade picks: #{trade_picks.joins(pick: :team).where(teams: { id: starting_team_id }).map(&:pick)}"
     trade_picks.joins(pick: :team).where(teams: { id: starting_team_id }).map(&:pick)
   end
 
   def target_team_picks
-    puts "we are inside target_team_picks"
     trade_picks.joins(:pick).where(picks: { team_id: target_team_id }).map(&:pick)
   end
 
@@ -28,7 +26,7 @@ class Trade < ApplicationRecord
   end
 
   def trade_difference
-    starting_team_picks_value - target_team_picks_value
+    return (starting_team_picks_value - target_team_picks_value).abs.round(2)
   end
 
   def winner
