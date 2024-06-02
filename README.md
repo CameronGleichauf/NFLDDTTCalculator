@@ -14,7 +14,6 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 
 
 ## Tech Debt
-- Update JJ framework 
 - UI Improvements
   - Show trade calculator and teams view buttons on `one_team_selected` view 
   - Once `Save Trade` button is clicked, automatically bring team back to home page
@@ -29,7 +28,7 @@ These are features that were not able to be included in this release, but would 
 - Add a 3rd team
 - Add future draft picks
 
-# Code 
+## Code 
 This project runs on [Ruby on Rails](https://rubyonrails.org/), a breakdown of relevant files can be found below:
 - App
   - [Models](https://github.com/CameronGleichauf/NFLDDTTCalculator/tree/main/app/models)
