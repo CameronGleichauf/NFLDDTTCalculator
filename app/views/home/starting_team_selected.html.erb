@@ -6,6 +6,12 @@
 <body>
 <h1>NFL Draft Trade Calculator</h1>
 
+<div class="upper-left">
+  <div class="button-container">
+    <%= link_to "Teams View", teams_path, class: "button" %>
+  </div>
+</div>
+
 <p>The starting team selected is: <%= @starting_team.name %></p>
 
 <%= form_tag(home_index_path, method: "get") do %>

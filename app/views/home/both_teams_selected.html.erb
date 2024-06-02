@@ -199,6 +199,8 @@
                 if (xhr.status === 201) {
                     console.log("Trade saved successfully.");
                     alert("Trade saved successfully!");
+                    // send us back to home page cam
+                    window.location.href = "/";
                 } else {
                     console.error("Error saving trade:", xhr.statusText);
                     alert("Trade failed to save!");

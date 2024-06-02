@@ -14,9 +14,6 @@ This project creates an NFL Draft Day Trade Tool Calculator application that doe
 
 
 ## Tech Debt
-- UI Improvements
-  - Show trade calculator and teams view buttons on `one_team_selected` view 
-  - Once `Save Trade` button is clicked, automatically bring team back to home page
 - Code Cleanup
 
 ## Future Features
