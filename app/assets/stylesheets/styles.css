@@ -6,13 +6,16 @@ h1, p {
     font-size: 24px;
 }
 
-.team-card {
+.team-card, .team-container, .team {
     border: 1px solid #ccc;
     padding: 10px;
+    text-align: left;
+}
+
+.team-card, .team {
     margin: 10px;
     min-width: 320px;
     display: inline-block;
-    text-align: left;
 }
 
 .team-name {
@@ -32,49 +35,22 @@ h1, p {
     list-style-type: disc;
     padding-left: 20px;
     font-size: 18px;
-}
-
-.trade-button {
-    color: black;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.trade-button:hover {
-    background-color: yellowgreen;
-}
-
-.team-container {
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 10px;
-}
-
-.teams-container {
-    display: flex;
-    justify-content: space-around;
-}
-
-.team {
-    width: 45%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-}
-
-.team-name {
-    font-weight: bold;
-}
-
-.left-aligned-list {
     margin-top: 5px;
 }
 
-.highlight {
-    border: 2px solid black; /* Black border around the highlighted item */
-    padding: 5px; /* Add some padding to ensure the border is visible */
+.trade-button, .button {
+    color: black;
+    border: 2px solid black;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.trade-button:hover, .button:hover {
+    background-color: yellowgreen;
 }
 
 .team-names {
@@ -86,18 +62,7 @@ h1, p {
     display: flex;
     justify-content: center;
     margin-top: 15px;
-}
-
-.button {
-    color: black;
-    border: 2px solid black;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-
-.button:hover {
-    background-color: yellowgreen;
+    margin-bottom: 10px;
 }
 
 .upper-left {
@@ -108,20 +73,3 @@ h1, p {
     display: flex;
     flex-direction: row;
 }
-
-.button-container {
-    margin-bottom: 10px;
-}
-
-.button {
-    color: black;
-    border: 2px solid black; /* Add border styling */
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    text-decoration: none; /* Remove default underline for links */
-    display: inline-block; /* Ensure inline display */
-    margin-right: 10px; /* Add some margin between buttons */
-}
-
-
